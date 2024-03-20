@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine3.19
+    command: -c fsync=off -c full_page_writes=off
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 1s
+      timeout: 1s
+      retries: 60
+
+  app:
+    image: nginx:stable-alpine3.17
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    depends_on:
+       db:
+          condition: service_healthy
