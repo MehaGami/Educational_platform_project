@@ -29,4 +29,4 @@ services:
   php-fpm:
     image: php:8-fpm
     volumes:
-      - ./src:/var/www/src
+      - ./src:/usr/share/nginx/src
