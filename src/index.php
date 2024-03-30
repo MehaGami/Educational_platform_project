@@ -1,2 +1,2 @@
 <?php
-var_dump(2);
+var_dump(1,2);
