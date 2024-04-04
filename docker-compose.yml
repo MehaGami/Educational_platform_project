@@ -27,6 +27,6 @@ services:
           condition: service_healthy
 
   php-fpm:
-    image: php:8-fpm
+    image: php:8.0-fpm-alpine
     volumes:
-      - ./front-end:/usr/share/nginx/src
+      - ./src:/usr/share/nginx/src
